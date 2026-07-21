@@ -1,1 +1,16 @@
-[]
+[
+    {
+        "id": 1,
+        "name": "Brian Kiprotich",
+        "email": "brian@gmail.com",
+        "projects": [
+            1
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Brian",
+        "email": "brian@gmail.com",
+        "projects": []
+    }
+]
