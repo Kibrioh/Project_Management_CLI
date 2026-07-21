@@ -6,12 +6,16 @@ Entry point for the Project Management CLI.
 
 import argparse
 
-# Add these imports
 from models.user import User
 from models.task import Task
+from rich.table import Table
+from rich.console import Console
 from models.project import Project
 
+
 from utils.storage import load_data, save_data
+
+console = Console()
 
 
 def main():
@@ -108,7 +112,7 @@ def main():
 
         save_data("users.json", users)
 
-        print(f"User '{user.name}' added successfully.")
+        console.print("[bold green]✓ User added successfully[/bold green]")
 
 
     elif args.command == "list-users":
@@ -117,10 +121,24 @@ def main():
 
         if not users:
             print("No users found.")
-            print("-" * 40)
+            
         else:
+            table = Table(title="Users")
+            table.add_column("ID", style="cyan")
+            table.add_column("Name", style="green")
+            table.add_column("Email", style="magenta")
+            table.add_column("Projects", justify="center")
+
             for user in users:
-                print(user)
+
+                table.add_row(
+                    str(user.id),
+                    user.name,
+                    user.email,
+                    str(len(user.projects))
+                )
+
+            console.print(table)
 
     elif args.command == "add-project":
 
@@ -149,7 +167,7 @@ def main():
         save_data("projects.json", projects)
         save_data("users.json", users)
 
-        print(f"Project '{project.title}' added successfully.")
+        console.print("[bold green]✓ Project updated successfully[/bold green]")
 
 
     elif args.command == "list-projects":
@@ -159,11 +177,24 @@ def main():
             print("No projects found.")
 
         else:
-            print("\nProjects")
-            print("-" * 50)
+            table = Table(title="Projects")
+            table.add_column("ID", style="cyan")
+            table.add_column("Title", style="green")
+            table.add_column("Owner")
+            table.add_column("Due Date")
+            table.add_column("Tasks")
 
             for project in projects:
-                print(project)
+
+                table.add_row(
+                    str(project.id),
+                    project.title,
+                    str(project.user_id),
+                    project.due_date,
+                    str(len(project.tasks))
+                )
+
+            console.print(table)
 
 
     elif args.command == "add-task":
@@ -215,11 +246,25 @@ def main():
             print("No tasks found.")
 
         else:
-            print("\nTasks")
-            print("-" * 50)
+            table = Table(title="Tasks")
+
+            table.add_column("ID", style="cyan")
+            table.add_column("Title", style="green")
+            table.add_column("Status")
+            table.add_column("Assigned To")
+            table.add_column("Project")
 
             for task in tasks:
-                print(task)
+
+                table.add_row(
+                    str(task.id),
+                    task.title,
+                    task.status,
+                    str(task.assigned_to),
+                    str(task.project_id)
+                )
+
+            console.print(table)
 
     elif args.command == "complete-task":
 
