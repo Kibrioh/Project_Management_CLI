@@ -97,6 +97,36 @@ def main():
         help="List all projects"
     )
 
+    add_task = subparsers.add_parser(
+        "add-task",
+        help="Add a task to a project"
+    )
+
+    add_task.add_argument(
+        "--title",
+        required=True,
+        help="Task title"
+    )
+
+    add_task.add_argument(
+        "--project-id",
+        type=int,
+        required=True,
+        help="Project ID"
+    )
+
+    add_task.add_argument(
+        "--assigned-to",
+        type=int,
+        required=True,
+        help="Assigned user ID"
+    )
+
+    subparsers.add_parser(
+        "list-tasks",
+        help="List all tasks"
+    )
+
     args = parser.parse_args()
 
     if args.command == "add-user":
@@ -362,35 +392,7 @@ def main():
 # Task Commands
 # -------------------------
 
-    add_task = subparsers.add_parser(
-        "add-task",
-        help="Add a task to a project"
-    )
-
-    add_task.add_argument(
-        "--title",
-        required=True,
-        help="Task title"
-    )
-
-    add_task.add_argument(
-        "--project-id",
-        type=int,
-        required=True,
-        help="Project ID"
-    )
-
-    add_task.add_argument(
-        "--assigned-to",
-        type=int,
-        required=True,
-        help="Assigned user ID"
-    )
-
-    subparsers.add_parser(
-        "list-tasks",
-        help="List all tasks"
-    )
+    
 
     complete_task = subparsers.add_parser(
         "complete-task",
