@@ -8,5 +8,23 @@
         "tasks": [
             1
         ]
+    },
+    {
+        "id": 2,
+        "title": "Data Modelling",
+        "description": "Utility Network",
+        "due_date": "2027-08-10",
+        "user_id": 2,
+        "tasks": [
+            2
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Data review",
+        "description": "data migration process review",
+        "due_date": "2027-10-10",
+        "user_id": 3,
+        "tasks": []
     }
 ]

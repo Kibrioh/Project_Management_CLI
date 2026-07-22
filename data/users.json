@@ -11,6 +11,22 @@
         "id": 2,
         "name": "Brian",
         "email": "brian@gmail.com",
+        "projects": [
+            2
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Nancy",
+        "email": "NancyU@gmail.com",
+        "projects": [
+            3
+        ]
+    },
+    {
+        "id": 4,
+        "name": "kiprotich",
+        "email": "kibrioh@gmail.com",
         "projects": []
     }
 ]
